@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>絵画世界美術館 - プロトタイプ</title>
+<link rel="stylesheet" href="style.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="start-screen">
+    <h1>絵画世界美術館</h1>
+    <p>美術館の絵画に近づくと、その絵の中の世界に入り込めます。<br/>
+    世界の中でアイテムを見つけたら <b>E</b> で拾い、元の世界に持ち帰りましょう。<br/>
+    台座に置いたアイテムはEでもう一度持ち上げ、<b>別の絵の中</b>に持ち込んで祭壇に捧げることもできます。<br/>
+    すべてのアイテムを集めると、美術館に何かが起こるかもしれません。</p>
+    <p class="controls">操作: <b>W A S D</b> 移動 / <b>マウス</b> 視点 / <b>E</b> 調べる・拾う / <b>I</b> 図鑑 / <b>M</b> BGM切替 / <b>Esc</b> 一時解除</p>
+    <p class="controls">全ての祭壇を捧げ終えるまでのタイムとスコアを記録します。</p>
+    <button id="start-btn">クリックして開始</button>
+  </div>
+
+  <div id="hud">
+    <div id="area-label"></div>
+    <div id="crosshair"></div>
+    <div id="prompt"></div>
+    <div id="toast"></div>
+    <div id="held-item"></div>
+    <div id="bgm-indicator">BGM: オフ (M で切替)</div>
+    <div id="inventory-panel">
+      <div class="inv-title">持ち物</div>
+      <ul id="inventory-list"></ul>
+    </div>
+    <div id="score-panel">
+      <div id="score-text">スコア: 0</div>
+      <div id="timer-text">タイム: 00:00</div>
+    </div>
+  </div>
+
+  <div id="fade-overlay"></div>
+
+  <div id="collection-modal">
+    <div class="collection-box">
+      <h2>図鑑</h2>
+      <div class="collection-section-title">集めた宝物</div>
+      <div id="collection-items" class="collection-grid"></div>
+      <div class="collection-section-title">祭壇の記録</div>
+      <ul id="collection-altars" class="collection-list"></ul>
+      <div class="collection-section-title">この美術館で起きたこと</div>
+      <ul id="collection-events" class="collection-list"></ul>
+      <button id="collection-close-btn">閉じる (I)</button>
+    </div>
+  </div>
+
+  <div id="results-modal">
+    <div class="results-box">
+      <h2>コンプリート!</h2>
+      <div class="results-row">タイム: <span id="res-time">00:00</span></div>
+      <div class="results-row">道を外れた回数: <span id="res-offtrack">0</span></div>
+      <div class="results-row results-score">スコア: <span id="res-score">0</span></div>
+      <div id="res-best-note"></div>
+      <div class="results-divider"></div>
+      <div class="results-title">これまでの記録(この端末に保存)</div>
+      <ol id="res-highscore-list"></ol>
+      <div class="results-buttons">
+        <button id="res-close-btn">美術館を歩き続ける</button>
+        <button id="res-retry-btn">新しい記録に挑戦する</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
